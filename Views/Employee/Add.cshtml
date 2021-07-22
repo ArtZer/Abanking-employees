@@ -1,0 +1,51 @@
+﻿@model Employee
+
+<h2>Добавление сотрудника</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(model => model.firstName, "Имя")
+    <br />
+    @Html.EditorFor(model => model.firstName)
+    <br />
+    <br />
+    @Html.LabelFor(model => model.lastName, "Фамилия")
+    <br />
+    @Html.EditorFor(model => model.lastName)
+    <br />
+    <br />
+    @Html.LabelFor(model => model.age, "Возраст")
+    <br />
+    @Html.EditorFor(model => model.age)
+    <br />
+    <br />
+    @Html.LabelFor(model => model.sex, "Пол")
+    <br />
+    <select id=model.sex name="countires">
+        <option value="">Пол</option>
+        <option>М</option>
+        <option>Ж</option>
+    </select>
+    //Model.sex = value;
+    @*@Html.EditorFor(model => model.sex)*@
+    <br />
+    <br />
+
+    <p>
+        Отдел <br />
+        @Html.DropDownListFor(model => model.Department, ViewBag.departments as SelectList)
+    </p>
+
+    @Html.LabelFor(model => model.progLang, "Язык программирования")
+    <br />
+    @Html.EditorFor(model => model.progLang)
+    <br />
+    <br />
+
+
+    <input type="submit" value="Добавить" />
+
+    @Html.DropDownList("countires", new SelectList(new string[] { "Russia", "USA", "Canada", "France" }), "Countries")
+}
+
+
