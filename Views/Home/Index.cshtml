@@ -42,6 +42,12 @@
                             <td> @dep.name </td>
                         }                        
                      }
+                    @{foreach (var pLang in ViewBag.progLang)
+                        if(pLang.id == em.IdProgLang)
+                        {
+                            <td> @pLang.name </td>
+                        }                        
+                     }
 
                     @*<td> @em.ProgLang.name</td>*@
                     <td><p><a href="/Home/Buy/@em.id">Изменить</a></p> <p><a href="/Home/Buy/@em.id">Удалить</a></p></td>

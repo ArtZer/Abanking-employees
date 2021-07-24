@@ -14,7 +14,7 @@ namespace Abanking_employees.Data.Models
         public char sex { get; set; }
         public int IdDepartment { get; set; }
         public Department Department { get; set; }
-        public string IdProgLang { get; set; }
+        public int IdProgLang { get; set; }
         public ProgrammingLanguage ProgLang { get; set; }
     }
 }

@@ -24,9 +24,13 @@ namespace Abanking_employees.Controllers
         {
             AppDBContext db = new AppDBContext();
 
-            List<Department> departments = new List<Department>();
-            departments = db.departments.ToList();
+            List<Department> departments = new List<Department>();            
+            departments = db.departments.ToList();            
             ViewBag.departments = departments;
+
+            List<ProgrammingLanguage> progLang = new List<ProgrammingLanguage>();
+            progLang = db.progLang.ToList();
+            ViewBag.progLang = progLang;
 
             var homeEmployees = new HomeViewModel
             {
