@@ -28,10 +28,10 @@ namespace Abanking_employees.Data.Repository
             {
                 var i = new Employee
                 {
-                    //firstName = el.firstName,
-                    //lastName = el.lastName,
-                    //age = el.age,
-                    //sex = el.sex
+                    firstName = el.firstName,
+                    lastName = el.lastName,
+                    age = el.age,
+                    sex = el.sex
                 };
             }
 

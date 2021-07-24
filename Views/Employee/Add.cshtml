@@ -19,8 +19,7 @@
     @Html.EditorFor(model => model.age)
     <br />
     <br />
-    @Html.LabelFor(model => model.sex, "Пол")
-    <br />
+    <p> Пол </p>
     <select name="sex">
         <option value="sex">Пол</option>
         <option>М</option>
@@ -28,9 +27,9 @@
     </select>
     <br />
     <br />
-   
-    <select name="Отдел">
-        <option value="idDep">Отдел</option>
+    <p>Отдел</p>
+    <select name="Dep">
+        <option value="Dep">Отдел</option>
         @foreach (var department in ViewBag.department)
         {
             <option>@department.name</option>
@@ -38,13 +37,16 @@
     </select>
     <br />
     <br />
-
-
-    @*@Html.LabelFor(model => model.progLang, "Язык программирования")
-        <br />
-        @Html.EditorFor(model => model.progLang)
-        <br />
-        <br />*@
+    <p>Язык программирования</p>
+    <select name="ProgLang">
+        <option value="ProgLang">Язык программирвания</option>
+        @foreach (var pl in ViewBag.progLang)
+        {
+            <option>@pl.name</option>
+        }
+    </select>
+    <br />
+    <br />
 
     <input type="submit" value="Добавить" />
 }

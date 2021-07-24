@@ -32,27 +32,32 @@ namespace Abanking_employees.Controllers
         public ActionResult Add()
         {
             AppDBContext db = new AppDBContext();
-            //System.Web.Mvc.SelectList departments = new System.Web.Mvc.SelectList(db.departments);
-            //ViewBag.departments = departments;
 
             List<Department> department = new List<Department>();
             department = db.departments.ToList();
             ViewBag.department = department;
 
+            List<ProgrammingLanguage> progLang = new List<ProgrammingLanguage>();
+            progLang = db.progLang.ToList();
+            ViewBag.progLang = progLang;
+
             return View();
         }
 
         [HttpPost]
-        public ActionResult Add(Employee employee, char sex, Department idDep)
+        public ActionResult Add(Employee employee, char sex, string Dep, string ProgLang)
         {
             AppDBContext db = new AppDBContext();
 
             employee.sex = sex;
-            employee.IdDepartment = idDep.id;
+            var dep = db.departments.Single(d => d.name == Dep);
+            employee.IdDepartment = dep.id;
+            var pLang = db.progLang.Single(p => p.name == ProgLang);
+            employee.IdProgLang = pLang.id;
             db.Entry(employee).State = EntityState.Added;
             db.SaveChanges();
 
-            return RedirectToAction("Home/Index");
+            return RedirectPermanent("/Home/index");
         }
     }
 }
