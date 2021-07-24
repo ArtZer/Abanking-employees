@@ -42,8 +42,13 @@ namespace Abanking_employees.Controllers
         public ActionResult Add() // пользователю представление с формой для заполнение
         {
             AppDBContext db = new AppDBContext();
-            System.Web.Mvc.SelectList departments = new System.Web.Mvc.SelectList(db.departments, "Id", "Name");
-            ViewBag.departments = departments;
+            //System.Web.Mvc.SelectList departments = new System.Web.Mvc.SelectList(db.departments);
+            //ViewBag.departments = departments;
+
+            List<Department> department = new List<Department>();
+            department = db.departments.ToList();
+            ViewBag.department = department;
+
             return View();
         }
 

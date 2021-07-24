@@ -33,19 +33,23 @@
 
     <p>
         Отдел <br />
-        @Html.DropDownListFor(model => model.Department, ViewBag.departments as SelectList)
+        <select name="Отдел">
+            @foreach (var department in ViewBag.department)
+            {
+                <option>@department.name</option>
+            }
+        </select>
     </p>
 
-    @Html.LabelFor(model => model.progLang, "Язык программирования")
-    <br />
-    @Html.EditorFor(model => model.progLang)
-    <br />
-    <br />
 
+
+        @*@Html.LabelFor(model => model.progLang, "Язык программирования")
+            <br />
+            @Html.EditorFor(model => model.progLang)
+            <br />
+            <br />*@
 
     <input type="submit" value="Добавить" />
-
-    @Html.DropDownList("countires", new SelectList(new string[] { "Russia", "USA", "Canada", "France" }), "Countries")
 }
 
 

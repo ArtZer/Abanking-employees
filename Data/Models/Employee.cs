@@ -12,7 +12,9 @@ namespace Abanking_employees.Data.Models
         public string lastName { get; set; }
         public int age { get; set; }
         public char sex { get; set; }
-        public virtual Department Department { get; set; }
-        public string  progLang { get; set; }
+        public int IdDepartment { get; set; }
+        public Department Department { get; set; }
+        public string IdProgLang { get; set; }
+        public ProgrammingLanguage ProgLang { get; set; }
     }
 }

@@ -15,11 +15,10 @@ namespace Abanking_employees.Data
 
         public AppDBContext()
         {
-
         }
         public AppDBContext(DbContextOptions<AppDBContext> options) : base(options)
         {
-            Database.EnsureCreated(); //Создание DB
+            Database.EnsureCreated();
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
