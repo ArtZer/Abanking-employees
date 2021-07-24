@@ -2,26 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using Abanking_employees.Data.Interfaces;
 using Abanking_employees.Data.Models;
 using Abanking_employees.Data;
 using Abanking_employees.Data.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using Abanking_employees.Data.ViewModels;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Abanking_employees.Controllers
 {
-    public class EmployeeController: Controller
+    public class EmployeeController : Controller
     {
         private readonly IListEmployee _listEmployee;
         private readonly IListDepartment _listDepartment;
-
-        public EmployeeController(IListEmployee ile, IListDepartment listDepartment )
-        {
-            _listEmployee = ile;
-            _listDepartment = listDepartment;
-        }
 
         public ActionResult Edit()
         {
@@ -45,10 +39,11 @@ namespace Abanking_employees.Controllers
         }
 
         [HttpPost]
-        public ActionResult Add(Employee employee, char sex, string Dep, string ProgLang)
+        public ActionResult Add(Employee employee, string name, char sex, string Dep, string ProgLang)
         {
             AppDBContext db = new AppDBContext();
 
+            employee.firstName = name;
             employee.sex = sex;
             var dep = db.departments.Single(d => d.name == Dep);
             employee.IdDepartment = dep.id;

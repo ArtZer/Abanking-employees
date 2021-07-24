@@ -4,10 +4,50 @@
 
 @using (Html.BeginForm("Add", "Employee", FormMethod.Post))
 {
-    @Html.LabelFor(model => model.firstName, "Имя")
-    <br />
-    @Html.EditorFor(model => model.firstName)
-    <br />
+    <title>jQuery UI Autocomplete - Default functionality</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            var availableTags = [
+                "Коля",
+                "Маша",
+                "Миша",
+                "Игорь",
+                "Артур",
+                "Антон",
+                "Вова",
+                "Никита",
+                "Катя",
+                "Лера",
+                "Ольга",
+                "Нина",
+                "Ирина",
+                "Даша",
+                "Наташа",
+                "Альбина",
+                "Света",
+                "Арнольд",
+                "Дина",
+                "Денис",
+                "Костя",
+                "Люда"
+            ];
+            $("#Name").autocomplete({
+                source: availableTags
+            });
+        });
+    </script>
+
+    <div class="ui-widget">
+        <label for="Name" >
+            <br />Имя:
+        </label>
+        <input name="Name" id="Name">
+    </div>
+
     <br />
     @Html.LabelFor(model => model.lastName, "Фамилия")
     <br />
