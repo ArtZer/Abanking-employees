@@ -18,7 +18,9 @@
 </head>
 <body>
     <caption>Список сотрудников</caption>
-    <p><a class="nav-link" asp-controller="Employee" asp-action="Add">Добавить</a></p>
+    <a class="nav-link" asp-controller="Employee" asp-action="Add">Добавить сотрудника</a>
+    <a class="nav-link" asp-controller="Employee" asp-action="Add">Добавить отдел</a>
+    <a class="nav-link" asp-controller="Employee" asp-action="Add">Добавить язык программирования</a>
     <table>
         <tr>
             <th>Имя</th>
@@ -35,19 +37,19 @@
                     <td> @em.lastName</td>
                     <td> @em.age</td>
                     <td> @em.sex</td>
-                    
+
                     @{foreach (var dep in ViewBag.departments)
-                        if(dep.id == em.IdDepartment)
-                        {
-                            <td> @dep.name </td>
-                        }                        
-                     }
+                            if (dep.id == em.IdDepartment)
+                            {
+                                <td> @dep.name </td>
+                            }
+                    }
                     @{foreach (var pLang in ViewBag.progLang)
-                        if(pLang.id == em.IdProgLang)
-                        {
-                            <td> @pLang.name </td>
-                        }                        
-                     }
+                            if (pLang.id == em.IdProgLang)
+                            {
+                                <td> @pLang.name </td>
+                            }
+                    }
 
                     <td><p><a href="/Home/Buy/@em.id">Изменить</a></p> <p><a href="/Home/Buy/@em.id">Удалить</a></p></td>
                 </tr>
