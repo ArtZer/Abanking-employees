@@ -19,5 +19,7 @@ namespace Abanking_employees.Data.Repository
         }
 
         public IEnumerable<Department> ALLDepartments => appDBContext.departments;
+
+        public Department getDepatment(int depId) => appDBContext.departments.FirstOrDefault(p => p.id == depId);
     }
 }

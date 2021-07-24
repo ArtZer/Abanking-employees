@@ -35,7 +35,14 @@
                     <td> @em.lastName</td>
                     <td> @em.age</td>
                     <td> @em.sex</td>
-                    <td> @em.Department.name</td>
+                    
+                    @{foreach (var dep in ViewBag.departments)
+                        if(dep.id == em.IdDepartment)
+                        {
+                            <td> @dep.name </td>
+                        }                        
+                     }
+
                     @*<td> @em.ProgLang.name</td>*@
                     <td><p><a href="/Home/Buy/@em.id">Изменить</a></p> <p><a href="/Home/Buy/@em.id">Удалить</a></p></td>
                     @*<td><p><a href="/Home/Buy/@em.id">Удалить</a></p></td> //31:09*@

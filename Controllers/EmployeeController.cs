@@ -23,23 +23,13 @@ namespace Abanking_employees.Controllers
             _listDepartment = listDepartment;
         }
 
-        //public IActionResult Add()
-        //{
-        //    var AddEmployeeViewModel = new AddEmployeeViewModel //Возможно не надо
-        //    {
-        //        Employee = _listEmployee.Employee,
-        //        Department = _listDepartment.ALLDepartments
-        //    };
-        //    return View(AddEmployeeViewModel);
-        //}
-
-        public ActionResult Edit() // пользователю представление с формой для заполнение
+        public ActionResult Edit()
         {
             return View();
         }
 
         [HttpGet]
-        public ActionResult Add() // пользователю представление с формой для заполнение
+        public ActionResult Add()
         {
             AppDBContext db = new AppDBContext();
             //System.Web.Mvc.SelectList departments = new System.Web.Mvc.SelectList(db.departments);
@@ -53,14 +43,16 @@ namespace Abanking_employees.Controllers
         }
 
         [HttpPost]
-        public ActionResult Add(Employee employee) //принимает данные с формы заполненной пользователем
+        public ActionResult Add(Employee employee, char sex, Department idDep)
         {
             AppDBContext db = new AppDBContext();
 
+            employee.sex = sex;
+            employee.IdDepartment = idDep.id;
             db.Entry(employee).State = EntityState.Added;
             db.SaveChanges();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Home/Index");
         }
     }
 }

@@ -9,5 +9,6 @@ namespace Abanking_employees.Data.Interfaces
     public interface IListDepartment
     {
         IEnumerable<Department> ALLDepartments { get; }
+        public Department getDepatment(int depId);
     }
 }

@@ -7,6 +7,7 @@ using Abanking_employees.Data.Interfaces;
 using Abanking_employees.Data.Models;
 using Abanking_employees.Data;
 using Abanking_employees.Data.ViewModels;
+using Abanking_employees.Data.Repository;
 
 namespace Abanking_employees.Controllers
 {
@@ -21,6 +22,12 @@ namespace Abanking_employees.Controllers
 
         public ViewResult Index()
         {
+            AppDBContext db = new AppDBContext();
+
+            List<Department> departments = new List<Department>();
+            departments = db.departments.ToList();
+            ViewBag.departments = departments;
+
             var homeEmployees = new HomeViewModel
             {
                 AllEmployee = _listEmployee.Employee

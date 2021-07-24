@@ -2,7 +2,7 @@
 
 <h2>Добавление сотрудника</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Add", "Employee", FormMethod.Post))
 {
     @Html.LabelFor(model => model.firstName, "Имя")
     <br />
@@ -21,33 +21,30 @@
     <br />
     @Html.LabelFor(model => model.sex, "Пол")
     <br />
-    <select id=model.sex name="countires">
-        <option value="">Пол</option>
+    <select name="sex">
+        <option value="sex">Пол</option>
         <option>М</option>
         <option>Ж</option>
     </select>
-    //Model.sex = value;
-    @*@Html.EditorFor(model => model.sex)*@
+    <br />
+    <br />
+   
+    <select name="Отдел">
+        <option value="idDep">Отдел</option>
+        @foreach (var department in ViewBag.department)
+        {
+            <option>@department.name</option>
+        }
+    </select>
     <br />
     <br />
 
-    <p>
-        Отдел <br />
-        <select name="Отдел">
-            @foreach (var department in ViewBag.department)
-            {
-                <option>@department.name</option>
-            }
-        </select>
-    </p>
 
-
-
-        @*@Html.LabelFor(model => model.progLang, "Язык программирования")
-            <br />
-            @Html.EditorFor(model => model.progLang)
-            <br />
-            <br />*@
+    @*@Html.LabelFor(model => model.progLang, "Язык программирования")
+        <br />
+        @Html.EditorFor(model => model.progLang)
+        <br />
+        <br />*@
 
     <input type="submit" value="Добавить" />
 }
