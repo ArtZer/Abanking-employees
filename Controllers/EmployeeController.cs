@@ -18,7 +18,7 @@ namespace Abanking_employees.Controllers
         private readonly IListDepartment _listDepartment;
 
         [HttpGet]
-        public ActionResult Add()
+        public ActionResult Add(string error)
         {
             AppDBContext db = new AppDBContext();
 
@@ -30,6 +30,8 @@ namespace Abanking_employees.Controllers
             progLang = db.progLang.ToList();
             ViewBag.progLang = progLang;
 
+            ViewBag.Message = error;
+
             return View();
         }
 
@@ -38,16 +40,20 @@ namespace Abanking_employees.Controllers
         {
             AppDBContext db = new AppDBContext();
 
-            employee.firstName = name;
-            employee.sex = sex;
-            var dep = db.departments.Single(d => d.name == Dep);
-            employee.IdDepartment = dep.id;
-            var pLang = db.progLang.Single(p => p.name == ProgLang);
-            employee.IdProgLang = pLang.id;
-            db.Entry(employee).State = EntityState.Added;
-            db.SaveChanges();
+            if (ModelState.IsValid & Dep!= "Отдел" & ProgLang!="Язык программирвания")
+            {
+                employee.firstName = name;
+                employee.sex = sex;
+                var dep = db.departments.Single(d => d.name == Dep);
+                employee.IdDepartment = dep.id;
+                var pLang = db.progLang.Single(p => p.name == ProgLang);
+                employee.IdProgLang = pLang.id;
+                db.Entry(employee).State = EntityState.Added;
+                db.SaveChanges();
+                return RedirectPermanent("/Home/index");
+            }
 
-            return RedirectPermanent("/Home/index");
+            return RedirectPermanent("/Employee/Add?error=Ошибка: Не все поля были заполены!");
         }
 
         [HttpGet]

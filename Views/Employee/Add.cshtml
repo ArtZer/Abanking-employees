@@ -1,6 +1,10 @@
 ﻿@model Employee
 
 <h2>Добавление сотрудника</h2>
+<br />
+<font color="#ff5050">
+    @ViewBag.Message
+</font>
 
 @using (Html.BeginForm("Add", "Employee", FormMethod.Post))
 {
@@ -43,15 +47,17 @@
 
     <div class="ui-widget">
         <label for="Name">
-            <br />Имя:
+            Имя:
         </label>
+        <br />
         <input name="Name" id="Name">
     </div>
-
+    @Html.ValidationMessageFor(model => model.firstName)
     <br />
     @Html.LabelFor(model => model.lastName, "Фамилия")
     <br />
     @Html.EditorFor(model => model.lastName)
+    @Html.ValidationMessageFor(model => model.lastName)
     <br />
     <br />
     @Html.LabelFor(model => model.age, "Возраст")
@@ -85,6 +91,7 @@
             <option>@pl.name</option>
         }
     </select>
+
     <br />
     <br />
     <p></p>

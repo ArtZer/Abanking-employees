@@ -1,6 +1,6 @@
 ﻿@model Department
 
-<h2>Добавление сотрудника</h2>
+<h2>Добавление отдела</h2>
 @using (Html.BeginForm("Add", "Department", FormMethod.Post))
 {
     <br />
@@ -12,7 +12,7 @@
     @Html.LabelFor(model => model.floor, "Этаж")
     <br />
     @Html.EditorFor(model => model.floor)
-
+    <br />
     <input type="submit" value="Добавить" />
     <input type="submit" asp-controller="Home" asp-action="index" value="Отмена" />
 }
