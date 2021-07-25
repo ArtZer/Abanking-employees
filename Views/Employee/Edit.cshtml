@@ -1,1 +1,66 @@
-﻿
+﻿@model Employee
+
+<h2>Редактирование сотрудника</h2>
+
+@using (Html.BeginForm("Edit", "Employee", FormMethod.Post))
+{
+<fieldset>
+    <p hidden>
+        <input name="id" type="text" value="@ViewBag.employee.id">
+    </p>
+    <p>
+        <b>Имя:</b><br>
+        <input name=firstName type="text" size="40" value="@ViewBag.employee.firstName">
+    </p>
+    <p>
+        <b>Фамилия:</b><br>
+        <input name=lastName type="text" size="40" value="@ViewBag.employee.lastName">
+    </p>
+    <p>
+        <b>Возраст:</b><br>
+        <input name=age type="text" size="40" value="@ViewBag.employee.age">
+    </p>
+    <p>
+        <b>Пол:</b><br>
+        <input name=sex type="text" size="40" value="@ViewBag.employee.sex">
+    </p>
+
+    <p>Отдел</p>
+    <select name="Dep">
+        <option value="Dep">Отдел</option>
+        @foreach (var department in ViewBag.department)
+        {
+            if (department.id == ViewBag.employee.IdDepartment)
+            {
+                <option selected>@department.name</option>
+            }
+            else
+            {
+                <option>@department.name</option>
+            }
+
+        }
+    </select>
+    <br />
+    <br />
+    <p>Язык программирования</p>
+    <select name="ProgLang">
+        <option value="ProgLang">Язык программирвания</option>
+        @foreach (var pl in ViewBag.progLang)
+        {
+            if (pl.id == ViewBag.employee.IdProgLang)
+            {
+                <option selected>@pl.name</option>
+            }
+            else
+            {
+                <option>@pl.name</option>
+            }
+        }
+    </select>
+    <br />
+
+    <input type="submit" value="Сохранить изменения" />
+    <input type="submit" asp-controller="Home" asp-action="index" value="Отмена" />
+</fieldset>
+}

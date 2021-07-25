@@ -17,11 +17,6 @@ namespace Abanking_employees.Controllers
         private readonly IListEmployee _listEmployee;
         private readonly IListDepartment _listDepartment;
 
-        public ActionResult Edit()
-        {
-            return View();
-        }
-
         [HttpGet]
         public ActionResult Add()
         {
@@ -50,6 +45,40 @@ namespace Abanking_employees.Controllers
             var pLang = db.progLang.Single(p => p.name == ProgLang);
             employee.IdProgLang = pLang.id;
             db.Entry(employee).State = EntityState.Added;
+            db.SaveChanges();
+
+            return RedirectPermanent("/Home/index");
+        }
+
+        [HttpGet]
+        public ActionResult Edit(int idEmp)
+        {
+            AppDBContext db = new AppDBContext();
+
+            var employee = db.employees.Single(e => e.id == idEmp);
+            ViewBag.employee = employee;
+
+            List<Department> department = new List<Department>();
+            department = db.departments.ToList();
+            ViewBag.department = department;
+
+            List<ProgrammingLanguage> progLang = new List<ProgrammingLanguage>();
+            progLang = db.progLang.ToList();
+            ViewBag.progLang = progLang;
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Employee employee, string Dep, string ProgLang, int id)
+        {
+            AppDBContext db = new AppDBContext();
+            employee.id = id;
+            var dep = db.departments.Single(d => d.name == Dep);
+            employee.IdDepartment = dep.id;
+            var pLang = db.progLang.Single(p => p.name == ProgLang);
+            employee.IdProgLang = pLang.id;        
+            db.Entry(employee).State = EntityState.Modified;
             db.SaveChanges();
 
             return RedirectPermanent("/Home/index");
