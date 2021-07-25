@@ -1,0 +1,14 @@
+﻿@model ProgrammingLanguage
+
+<h2>Добавление сотрудника</h2>
+@using (Html.BeginForm("Add", "ProgrammingLanguage", FormMethod.Post))
+{
+    <br />
+    @Html.LabelFor(model => model.name, "Название")
+    <br />
+    @Html.EditorFor(model => model.name)
+    <br />
+
+    <input type="submit" value="Добавить" />
+    <input type="submit" asp-controller="Home" asp-action="index" value="Отмена" />
+}

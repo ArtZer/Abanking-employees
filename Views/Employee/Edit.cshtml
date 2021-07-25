@@ -4,7 +4,6 @@
 
 @using (Html.BeginForm("Edit", "Employee", FormMethod.Post))
 {
-<fieldset>
     <p hidden>
         <input name="id" type="text" value="@ViewBag.employee.id">
     </p>
@@ -62,5 +61,5 @@
 
     <input type="submit" value="Сохранить изменения" />
     <input type="submit" asp-controller="Home" asp-action="index" value="Отмена" />
-</fieldset>
+
 }

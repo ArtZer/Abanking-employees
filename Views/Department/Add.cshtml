@@ -1,0 +1,18 @@
+﻿@model Department
+
+<h2>Добавление сотрудника</h2>
+@using (Html.BeginForm("Add", "Department", FormMethod.Post))
+{
+    <br />
+    @Html.LabelFor(model => model.name, "Название")
+    <br />
+    @Html.EditorFor(model => model.name)
+    <br />
+    <br />
+    @Html.LabelFor(model => model.floor, "Этаж")
+    <br />
+    @Html.EditorFor(model => model.floor)
+
+    <input type="submit" value="Добавить" />
+    <input type="submit" asp-controller="Home" asp-action="index" value="Отмена" />
+}
