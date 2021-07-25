@@ -83,5 +83,18 @@ namespace Abanking_employees.Controllers
 
             return RedirectPermanent("/Home/index");
         }
+
+        public ActionResult Delete(int idEmp)
+        {
+            AppDBContext db = new AppDBContext();
+
+            var employee = db.employees.Single(e => e.id == idEmp);
+            ViewBag.employee = employee;
+
+            db.Entry(employee).State = EntityState.Deleted;
+            db.SaveChanges();
+
+            return RedirectPermanent("/Home/index");
+        }
     }
 }
